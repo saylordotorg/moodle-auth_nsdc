@@ -323,7 +323,7 @@ function course_status_update($data, $user, $production = false) {
     $response = json_decode(curl_exec($ch));
     $information = curl_getinfo($ch);
 
-    $statuscode = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+    $statuscode = $information['http_code'];
 
     if ($statuscode !== 200) {
         // NSDC reports an error.
