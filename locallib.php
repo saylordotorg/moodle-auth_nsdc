@@ -323,11 +323,11 @@ function course_status_update($data, $user, $production = false) {
     $response = json_decode(curl_exec($ch));
     $information = curl_getinfo($ch);
 
-    $statuscode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $statuscode = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
 
     if ($statuscode !== 200) {
         // NSDC reports an error.
-        $error = ' ('.$statuscode.') '.$response->error;
+        $error = ' ('.$statuscode.') '.$response->message;
         throw new moodle_exception('nsdc_api_returned_error', 'auth_nsdc', '', $error);
     }
 
